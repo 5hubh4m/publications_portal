@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% load static %}
+    <link href="{% static 'portal/css/style.css' %}" type="text/css" rel="stylesheet" >
+    <title>Institute Publications Portal - {% block head_title %}{% endblock %}</title>
+    {% block head_extra %}{% endblock %}
+</head>
+<body>
+    <header>
+        <div class="parent site-title">
+            <div class="child"><img class="site-logo" height="100%" width="auto" src="{% static 'portal/images/logo.png' %}"></div>
+            <div class="child"><h1 class="site-title">Institute Publications</h1></div>
+        </div>
+        <hr />
+        <div class="parent">
+            <div class="child"><a href="{% url 'portal:index' %}" class="nav-menu-style">Home</a></div>
+            <div class="child">|</div>
+            <div class="child"><a href="{% url 'portal:search' %}" class="nav-menu-style">Search</a></div>
+            <div class="child">|</div>
+            <div class="child"><a href="http://iitbhu.ac.in" class="nav-menu-style">IIT (BHU) Varanasi</a></div>
+            <div class="child">|</div>
+            {% if user.is_authenticated %}
+                <div class="child">
+                    Hello, <a href="{% url 'accounts:dashboard' %}" class="user-name tooltip">
+                        {{ username }}
+                        <span class="tooltip-text">Go to user dashboard.</span>
+                    </a>
+                </div>
+                <div class="child">|</div>
+                <div class="child"><a href="{% url 'logout' %}" class="logout">Logout</a></div>
+            {% else %}
+                <div class="child"><a href=" {%  url 'login' %}" class="logout">Login</a></div>
+            {% endif %}
+        </div>
+        <hr />
+    </header>
+
+    {% block body %}
+        {% block content %}
+        {% endblock %}
+    {% endblock %}
+
+    <footer>
+        {% block footer %}
+        {% endblock %}
+        <hr />
+        © 2016 Publications Portal by Shubham Chaudhary.
+        <hr />
+    </footer>
+</body>
+</html>

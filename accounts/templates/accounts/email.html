@@ -1,0 +1,12 @@
+Dear User,
+
+The link for obtaining a new password for email {{ email }} is provided here. Follow the link below:
+
+{{ protocol}}://localhost:8000{% url 'password_reset_confirm' uidb64=uid token=token %}
+
+In case you have not started the procedure, kindly ignore this Email.
+
+Sincerely,
+
+Administrators,
+Publications Portal

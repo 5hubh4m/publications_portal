@@ -1,0 +1,41 @@
+{% if publications %}
+    <div class="form-style pub-style">
+    <ul>
+    {% for pub in publications %}
+        <li>
+            <h3><a href="{% url 'portal:publication' publication_id=pub.0 %}">{{ pub.1 }}</a></h3>
+            <p><b>Abstract</b> {{ pub.2|slice:":50" }}...</p>
+            <p><b>Publisher on</b> {{ pub.3 }}</p>
+            <p><b>Published by</b>
+                <a href="{% url 'portal:publisher' publisher_id=pub.5 %}">{{ pub.6 }}</a>, {{ pub.4 }}
+            </p>
+            <p><b>Type</b> {{ pub.9 }}</p>
+            <b>By</b>
+                {% for a in pub.7 %}
+                <p>{{ forloop.counter }}. <a href="{% url 'portal:author' author_id=a.0 %}">{{ a.1 }}</a>
+                    (Dept. of <a href="{% url 'portal:department' department_id=a.5 %}">{{ a.6 }}</a>,
+                    <a href="{% url 'portal:institute' institute_id=a.3%}">{{ a.4 }}</a>)
+                </p>
+                {% endfor %}
+            <p><b>Areas</b>
+                <a href="{% url 'portal:field' field_id=pub.8.0.0 %}">{{ pub.8.0.1 }}</a>
+                {% for f in pub.8|slice:"1:" %}
+                    , <a href="{% url 'portal:field' field_id=f.0 %}">{{  f.1 }}</a>
+                {% endfor %}
+            </p>
+        </li>
+    {% endfor %}
+        <li style="display: none" />
+    </ul>
+    </div>
+    <form class="form-style" method="post" action="{% url 'portal:dump' %}">
+    {% csrf_token %}
+    {% for p in publications %}
+        <input name="id{{ p.0 }}" type="hidden" value="{{ p.0 }}" hidden />
+    {% endfor %}
+        <button type="submit">XML Dump</button>
+    </form>
+{% else %}
+    <br />
+    <h3>None</h3>
+{% endif %}

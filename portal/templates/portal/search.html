@@ -1,0 +1,33 @@
+{% extends 'portal/base.html' %}
+
+{% block head_title %}Search{% endblock %}
+
+{% block content %}
+    {% if form %}
+        <h2>Search</h2>
+        <form class="form-style" method="post">
+        {% csrf_token %}
+        <ul id="form">
+            {% if form.non_field_errors %}
+            <li>
+                {{ form.non_field_errors }}
+            </li>
+            {% endif %}
+            {% for f in form %}
+            <li>
+                {{ f.errors }}<br />
+                <label for="{{ f.id_for_label }}">{{ f.label }}</label>
+                {{ f }}
+                <span>{{ f.help_text|safe }}</span>
+            </li>
+            {% endfor %}
+            <li id="submit">
+                <input type="submit" name="Submit" />
+            </li>
+        </ul>
+        </form>
+    {% else %}
+        <h2>Search Results</h2>
+        {% include 'portal/publication_list.html' %}
+    {% endif %}
+{% endblock %}

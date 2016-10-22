@@ -1,0 +1,24 @@
+{% extends 'portal/base.html' %}
+
+{% block head_title %}Author{% endblock %}
+
+{% block content %}
+    <h2>{{ first_name }} {{ last_name }}</h2>
+    <div class="table-style">
+        <table align="center">
+            <tr><th colspan="2" class="title">Author Profile</th></tr>
+            <tr><th>Name</th><td>{{ first_name }} {% if middle_name %}{{ middle_name }} {% endif %}{{ last_name }}</td></tr>
+            <tr><th>Email ID</th><td>{{ email }}</td></tr>
+            <tr><th>Status</th><td>{{ type }}</td></tr>
+            <tr><th>URL</th><td>{{ url }}</td></tr>
+            <tr><th>Institute</th><td><a href="{% url 'portal:institute' institute_id=inst_id %}">{{ inst }}</a>,
+                    {{ inst_city }}</td></tr>
+            <tr><th>Department</th><td>
+                    <a href="{% url 'portal:department' department_id=dept_id %}">{{ dept }}</a>
+            </td></tr>
+        </table>
+    </div>
+    <br />
+    <h2>Publications by {{ first_name }} {{ last_name }}</h2>
+    {% include 'portal/publication_list.html' %}
+{% endblock %}

@@ -1,0 +1,8 @@
+{% extends 'portal/base.html' %}
+
+{% block head_title %}Department{% endblock %}
+
+{% block content %}
+    <h2>Publications in Department {{ name }}</h2>
+    {% include 'portal/publication_list.html' %}
+{% endblock %}

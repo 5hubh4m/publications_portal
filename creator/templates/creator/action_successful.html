@@ -1,0 +1,12 @@
+{% extends 'portal/base.html' %}
+
+{% block head_title %}Success{% endblock %}
+
+{% block content %}
+    <h2>Action Successful</h2>
+    <p>
+        The action you performed was successful. To return to the dashboard click on
+        <a href="{% url 'accounts:dashboard' %}">this</a> link. To return to homepage click on
+        <a href="{% url 'portal:index' %}">this</a> link.
+    </p>
+{% endblock %}

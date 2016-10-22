@@ -1,0 +1,56 @@
+{% extends 'portal/base.html' %}
+{% load widget_type %}
+
+{% block head_title %}{{ title }}{% endblock %}
+
+{% block content %}
+    <h2>Add {{ title }} Details</h2>
+    <p>In this form, add the details for the {{ title }}.</p>
+
+    <form class="form-style" method="post">
+        {% csrf_token %}
+        <ul id="form">
+            {% if form.non_field_errors %}
+            <li>
+                {{ form.non_field_errors }}
+            </li>
+            {% endif %}
+            <li>
+                {{ form.name.errors }}<br />
+                <label for="{{ form.name.id_for_label }}">{{ form.name.label }}</label>
+                {{ form.name }}
+                <span>{{ form.name.help_text|safe }}</span>
+            </li>
+            <li id="dept_list">
+                {{ form.department1.errors }}<br />
+                <label for="{{ form.department1.id_for_label }}">{{ form.department1.label }}</label>
+                {{ form.department1 }}
+                <button id="add_button" type="button" onclick="addDepartmentSelect()">Add more departments</button>
+                <span id="label">{{ form.department1.help_text|safe }}</span>
+            </li>
+            <li id="submit">
+                <input type="submit" name="Submit" />
+            </li>
+        </ul>
+    </form>
+{% endblock %}
+
+{% block footer %}
+<script>
+var i = 2;
+
+function addDepartmentSelect() {
+    var select = document.getElementById("{{ form.department1.id_for_label }}").cloneNode(true);
+    var new_id = select.getAttribute('id');
+    new_id = new_id.substr(0, new_id.length - 1) + i;
+    var new_name = select.getAttribute('name');
+    new_name = new_name.substr(0, new_name.length - 1) + i;
+    select.setAttribute('name', new_name);
+    select.setAttribute('id', new_id);
+    var list = document.getElementById("dept_list");
+    var button = document.getElementById("add_button");
+    list.insertBefore(select, button);
+    i += 1;
+}
+</script>
+{% endblock %}

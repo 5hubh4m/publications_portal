@@ -1,0 +1,39 @@
+{% extends 'portal/base.html' %}
+
+{% block head_title %}Login{% endblock %}
+
+{% block content %}
+    <h2>Sign In</h2>
+    <p>Log in to our account using the user name and password supplied to you. In case you have not registered yet,
+    use <a href="{% url 'accounts:signup' %}">this</a> link to do so.</p>
+
+    <form class="form-style" action="{% url 'login' %}" method="post">
+        {% csrf_token %}
+        <ul>
+            {% if form.non_field_errors %}
+            <li>
+                {{ form.non_field_errors }}
+            </li>
+            {% endif %}
+            <li>
+                {{ form.username.errors }}<br />
+                <label for="username">Email</label>
+                {{ form.username }}
+                <span>Enter your registered email here.</span>
+            </li>
+            <li>
+                {{ form.password.errors }}<br />
+                <label for="password">Password</label>
+                {{ form.password }}
+                <span>Enter your login password.</span>
+            </li>
+            <li>
+                <a href="{% url 'password_reset' %}"> Forgot Password</a>
+            </li>
+            <li>
+                <input type="submit" value="Log In" />
+            </li>
+
+        </ul>
+    </form>
+{% endblock %}

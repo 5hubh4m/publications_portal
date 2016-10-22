@@ -1,0 +1,18 @@
+{% extends 'portal/base.html' %}
+
+{% block head_title %}Publisher{% endblock %}
+
+{% block content %}
+    <h2>{{ name }}</h2>
+    <div class="table-style">
+        <table align="center">
+            <tr><th colspan="2" class="title">Publisher Details</th></tr>
+            <tr><th>Name</th><td>{{ name }}</td></tr>
+            <tr><th>Type</th><td>{{ type }}</td></tr>
+            <tr><th>URL</th><td>{{ url }}</td></tr>
+        </table>
+    </div>
+    <br />
+    <h2>Publications Published in {{ name }}</h2>
+    {% include 'portal/publication_list.html' %}
+{% endblock %}

@@ -1,0 +1,123 @@
+{% extends 'portal/base.html' %}
+{% load widget_type %}
+
+{% block head_title %}{{ title }}{% endblock %}
+
+{% block content %}
+    <h2>Add {{ title }} Details</h2>
+    <p>In this form, add the details for the {{ title }}.</p>
+
+    <form class="form-style" method="post">
+        {% csrf_token %}
+        <ul id="form">
+            {% if form.non_field_errors %}
+            <li>
+                {{ form.non_field_errors }}
+            </li>
+            {% endif %}
+            <li>{{ form.title.errors }}
+                <br />
+                <label for="{{ form.title.id_for_label }}">{{ form.title.label }}</label>
+                {{ form.title }}
+                <span>{{ form.title.help_text|safe }}</span>
+            </li>
+            <li>{{ form.description.errors }}
+                <br />
+                <label for="{{ form.description.id_for_label }}">{{ form.description.label }}</label>
+                {{ form.description }}
+                <span>{{ form.description.help_text|safe }}</span>
+            </li>
+            <li>{{ form.url.errors }}
+                <br />
+                <label for="{{ form.url.id_for_label }}">{{ form.url.label }}</label>
+                {{ form.url }}
+                <span>{{ form.url.help_text|safe }}</span>
+            </li>
+            <li>{{ form.location.errors }}
+                <br />
+                <label for="{{ form.location.id_for_label }}">{{ form.location.label }}</label>
+                {{ form.location }}
+                <span>{{ form.location.help_text|safe }}</span>
+            </li>
+            <li>{{ form.date.errors }}
+                <br />
+                <label for="{{ form.date.id_for_label }}">{{ form.date.label }}</label>
+                {{ form.date }}
+                <span>{{ form.date.help_text|safe }}</span>
+            </li>
+            <li>{{ form.code.errors }}
+                <br />
+                <label for="{{ form.code.id_for_label }}">{{ form.code.label }}</label>
+                {{ form.code }}
+                <span>{{ form.code.help_text|safe }}</span>
+            </li>
+            <li>{{ form.publisher.errors }}
+                <br />
+                <label for="{{ form.publisher.id_for_label }}">{{ form.publisher.label }}</label>
+                {{ form.publisher }}
+                <span>{{ form.publisher.help_text|safe }}</span>
+            </li>
+            <li id="author_list">{{ form.author1.errors }}
+                <br />
+                <label for="{{ form.author1.id_for_label }}">{{ form.author1.label }}</label>
+                {{ form.author1 }}
+                {{ form.degree1 }}
+                <button id="add_author_button" type="button" onclick="addAuthorSelect()">Add more authors</button>
+                <span>{{ form.author1.help_text|safe }}</span>
+            </li>
+            <li id="field_list">{{ form.field1.errors }}
+                <br />
+                <label for="{{ form.field1.id_for_label }}">{{ form.field1.label }}</label>
+                {{ form.field1 }}
+                <button id="add_field_button" type="button" onclick="addFieldSelect()">Add more fields</button>
+                <span>{{ form.field1.help_text|safe }}</span>
+            </li>
+            <li id="submit">
+                <input type="submit" name="Submit" />
+            </li>
+        </ul>
+    </form>
+{% endblock %}
+
+{% block footer %}
+<script>
+var num_fields = 2;
+var num_auth = 2;
+
+function addFieldSelect() {
+    var select = document.getElementById("{{ form.field1.id_for_label }}").cloneNode(true);
+    var new_id = select.getAttribute('id');
+    new_id = new_id.substr(0, new_id.length - 1) + num_fields;
+    var new_name = select.getAttribute('name');
+    new_name = new_name.substr(0, new_name.length - 1) + num_fields;
+    select.setAttribute('name', new_name);
+    select.setAttribute('id', new_id);
+    var list = document.getElementById("field_list");
+    var button = document.getElementById("add_field_button");
+    list.insertBefore(select, button);
+    num_fields += 1;
+}
+
+function addAuthorSelect() {
+    var select1 = document.getElementById("{{ form.author1.id_for_label }}").cloneNode(true);
+    var select2 = document.getElementById("{{ form.degree1.id_for_label }}").cloneNode(true);
+    var new_id1 = select1.getAttribute('id');
+    var new_id2 = select2.getAttribute('id');
+    new_id1 = new_id1.substr(0, new_id1.length - 1) + num_auth;
+    new_id2 = new_id2.substr(0, new_id2.length - 1) + num_auth;
+    var new_name1 = select1.getAttribute('name');
+    var new_name2 = select2.getAttribute('name');
+    new_name1 = new_name1.substr(0, new_name1.length - 1) + num_fields;
+    new_name2 = new_name2.substr(0, new_name2.length - 1) + num_fields;
+    select1.setAttribute('name', new_name1);
+    select1.setAttribute('id', new_id1);
+    select2.setAttribute('name', new_name2);
+    select2.setAttribute('id', new_id2);
+    var list = document.getElementById("author_list");
+    var button = document.getElementById("add_author_button");
+    list.insertBefore(select1, button);
+    list.insertBefore(select2, button);
+    num_auth += 1;
+}
+</script>
+{% endblock %}

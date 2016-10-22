@@ -1,0 +1,20 @@
+{% extends 'portal/base.html' %}
+
+{% block head_title %}Publication Area{% endblock %}
+
+{% block content %}
+    <h2>{{ title }}</h2>
+    <div class="table-style">
+        <table align="center">
+            <tr><th class="title">Associated Departments</th></tr>
+            {% for d in departments %}
+            <tr><td class="title">
+                    <a href="{% url 'portal:department' department_id=d.0 %}">{{ d.1 }}</a>
+            </td></tr>
+            {% endfor %}
+        </table>
+    </div>
+    <br />
+    <h2>Publications in Area {{ title }}</h2>
+    {% include 'portal/publication_list.html' %}
+{% endblock %}

@@ -1,0 +1,93 @@
+{% extends 'portal/base.html' %}
+
+{% block head_title %}{{ first_name }}{% endblock %}
+{% block content %}
+    <h2>Welcome, {{ first_name }} {{ last_name }}</h2>
+    {% if form %}
+        <form class="form-style" action="{% url 'accounts:dashboard' %}" method="post">
+        {% csrf_token %}
+        <ul>
+            <li class="errorlist">
+                Please complete your registration by adding an institute and a department to your profile.
+                If your institute or department is not in your list. You can add it by going to the link given below.
+            </li>
+            <li><a href="{% url 'creator:institute' %}">Add Institute</a></li>
+            <li><a href="{% url 'creator:department' %}">Add Department</a></li>
+            {% if form.non_field_errors %}
+                {{ form.non_field_errors }}
+            {% endif %}
+            {{ form.as_ul }}
+            <li>
+                <input type="submit" value="Submit" />
+            </li>
+        </ul>
+    </form>
+    {% else %}
+        <div class="table-style">
+            <table align="center">
+                <tr><th colspan="2" class="title">User Profile</th></tr>
+                <tr><th>Name</th><td>{{ first_name }} {% if middle_name %}{{ middle_name }} {% endif %}{{ last_name }}</td></tr>
+                <tr><th>Email ID</th><td>{{ user.email }}</td></tr>
+                <tr><th>Status</th><td>{{ type }}</td></tr>
+                <tr><th>URL</th><td>{{ url }}</td></tr>
+                <tr><th>Institute</th><td><a href="{% url 'portal:institute' institute_id=inst_id %}">{{ inst }}</a>,
+                    {{ inst_city }}</td></tr>
+                <tr><th>Department</th><td>
+                    <a href="{% url 'portal:department' department_id=dept_id %}">{{ dept }}</a>
+                </td></tr>
+            </table>
+        </div>
+        <br />
+        <div class="table-style">
+            <table class="links-table">
+                <tr><th colspan="2" class="title">Useful Links</th></tr>
+                <tr>
+                    <td class="link"><a href="{% url 'creator:institute' %}">Add Institute</a></td>
+                    <td class="link"><a href="{% url 'creator:author' %}">Add Author</a></td>
+                </tr>
+                <tr>
+                    <td class="link"><a href="{% url 'creator:field' %}">Add Publication Field</a></td>
+                    <td class="link"><a href="{% url 'creator:department' %}">Add Department</a></td>
+                </tr>
+                <tr>
+                    <td class="link"><a href="{% url 'creator:publisher' %}">Add Publisher</a></td>
+                    <td class="link"><a href="{% url 'creator:publication' %}">Add Publication</a></td>
+                </tr>
+            </table>
+        </div>
+            {% if type == 'Faculty' %}
+        <br />
+        <div class="table-style">
+            <table class="pub-table">
+                {% if unapproved %}
+                <tr><th class="title" colspan="7">Unapproved Publications</th></tr>
+                <tr>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>URL</th>
+                    <th>Location</th>
+                    <th>Date</th>
+                    <th>Code</th>
+                    <th>Submitted By</th>
+                </tr>
+                {% for p in unapproved %}
+                    <tr>
+                    {% for row in p|slice:"1:" %}
+                        <td>
+                            <a class="tooltip" href="{% url 'accounts:approve' publication_id=p.0 %}">
+                                {{ row }}
+                                <span class="tooltip-text">Click to approve.</span>
+                            </a>
+                        </td>
+                    {% endfor %}
+                    </tr>
+                {% endfor %}
+                {% else %}
+                    <tr><th colspan="7" class="title">None</th></tr>
+                {% endif %}
+            </table>
+        </div>
+            {% endif %}
+    {% endif %}
+{% endblock %}
+

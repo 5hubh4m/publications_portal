@@ -1,0 +1,70 @@
+{% extends 'portal/base.html' %}
+
+{% block head_title %}Register{% endblock %}
+
+{% block content %}
+    <h2>Registration</h2>
+    <p>Register for an account on the Publication Portal. In case you are already registered,
+    use <a href="{% url 'login' %}">this</a> link to sign in.</p>
+
+    <form class="form-style" action="{% url 'accounts:signup' %}" method="post">
+        {% csrf_token %}
+        <ul>
+            {% if form.non_field_errors %}
+            <li>
+                {{ form.non_field_errors }}
+            </li>
+            {% endif %}
+            <li>
+                {{ form.email.errors }}<br />
+                <label for="{{ form.email.id_for_label }}">{{ form.email.label }}</label>
+                {{ form.email }}
+                <span>Enter your Email ID.</span>
+            </li>
+            <li>
+                {{ form.first_name.errors }}<br />
+                <label for="{{ form.first_name.id_for_label }}">{{ form.first_name.label }}</label>
+                {{ form.first_name }}
+                <span>{{ form.first_name.help_text|safe }}</span>
+            </li>
+            <li>
+                {{ form.middle_name.errors }}<br />
+                <label for="{{ form.middle_name.id_for_label }}">{{ form.middle_name.label }}</label>
+                {{ form.middle_name }}
+                <span>{{ form.middle_name.help_text|safe }}</span>
+            </li>
+            <li>
+                {{ form.last_name.errors }}<br />
+                <label for="{{ form.last_name.id_for_label }}">{{ form.last_name.label }}</label>
+                {{ form.last_name }}
+                <span>{{ form.last_name.help_text|safe }}</span>
+            </li>
+            <li>
+                {{ form.url.errors }}<br />
+                <label for="{{ form.url.id_for_label }}">{{ form.url.label }}</label>
+                {{ form.url }}
+                <span>{{ form.url.help_text|safe }}</span>
+            </li>
+            <li>
+                {{ form.type.errors }}<br />
+                <label for="{{ form.type.id_for_label }}">{{ form.type.label }}</label>
+                <br />
+                <ul>
+                {% for c in form.type %}
+                        <li>{{ c }}</li>
+                {% endfor %}
+                <li style="display: none;"/>
+                </ul>
+                <span>{{ form.type.help_text|safe }}</span>
+            </li>
+            <li class="errorlist">
+                Once registered, you will need obtain a password by using this <a href="{% url 'password_reset' %}">
+                this</a> link to reset password. A password has already been mailed to you on the registered ID.
+                Therefore, make sure you enter the right ID.
+            </li>
+            <li>
+                <input type="submit" value="Register" />
+            </li>
+        </ul>
+    </form>
+{% endblock %}

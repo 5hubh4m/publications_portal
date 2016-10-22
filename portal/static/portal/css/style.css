@@ -1,0 +1,329 @@
+body {
+    width: 60%;
+    margin: auto;
+    min-width: 480px;
+    font-family: 'Roboto Slab', sans-serif;
+    text-align: center;
+}
+
+header {
+    margin-bottom: 30px;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: larger;
+}
+
+a {
+    color: #333333;
+    text-decoration-style: dotted;
+    -webkit-text-decoration-style: dotted;
+    -moz-text-decoration-style: dotted;
+    font-weight: 800;
+}
+
+.site-title {
+    font-family: 'American Typewriter', serif;
+    font-size: 6.5vw;
+    text-align: right;
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
+hr {
+    border: 0.05cm solid;
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
+.site-logo {
+    width: 16vw;
+    height: auto;
+}
+
+.parent {
+    display: flex;
+    justify-content: space-around;
+}
+
+.child {
+    text-align: center;
+    margin: auto;
+}
+
+.nav-menu-style {
+    margin-left: 10px;
+    margin-right: 10px;
+    color: #000000;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.user-name {
+    text-decoration: none;
+    color: #888888;
+}
+
+.logout {
+    text-decoration: none;
+    color: #000000;
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip .tooltip-text {
+    visibility: hidden;
+    width: auto;
+    min-width: 120px;
+    background-color: black;
+    color: #ffffff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+    position: absolute;
+    z-index: 1;
+}
+
+.tooltip:hover .tooltip-text {
+    visibility: visible;
+}
+
+p {
+    text-align: justify;
+}
+
+footer {
+    margin-top: 30px;
+    text-align: center;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: larger;
+}
+
+.login-form {
+    align-content: center;
+}
+
+.errorlist {
+    list-style: none;
+    max-width: 400px;
+    color: #FF0000;
+    text-align: justify;
+    font-family: 'Roboto Condensed', serif;
+}
+
+.form-style {
+    max-width:400px;
+    margin:50px auto;
+    background:#fff;
+    border-radius:2px;
+    padding:20px;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+.form-style h1{
+    display: block;
+    text-align: center;
+    padding: 0;
+    margin: 0 0 20px 0;
+    color: #5C5C5C;
+    font-size:x-large;
+}
+
+.form-style ul{
+    list-style:none;
+    padding:0;
+    margin:0;
+}
+
+.form-style li{
+    display: block;
+    padding: 9px;
+    border:1px solid #DDDDDD;
+    margin-bottom: 30px;
+    border-radius: 3px;
+}
+
+.form-style li:last-child{
+    border:none;
+    margin-bottom: 0;
+    text-align: center;
+}
+
+.form-style li > label{
+    display: block;
+    float: left;
+    margin-top: -19px;
+    background: #FFFFFF;
+    height: 14px;
+    padding: 2px 5px 2px 5px;
+    color: #B9B9B9;
+    font-size: 14px;
+    overflow: hidden;
+}
+
+.form-style input[type="text"],
+.form-style input[type="date"],
+.form-style input[type="datetime"],
+.form-style input[type="email"],
+.form-style input[type="number"],
+.form-style input[type="search"],
+.form-style input[type="time"],
+.form-style input[type="url"],
+.form-style input[type="password"],
+.form-style textarea {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    width: 100%;
+    display: block;
+    outline: none;
+    border: none;
+    height: 25px;
+    line-height: 25px;
+    font-size: 16px;
+    padding: 0;
+}
+
+.form-style textarea {
+    height: auto;
+    line-height: normal;
+}
+
+.form-style select {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    width: 100%;
+    display: block;
+    outline: none;
+    border: none;
+    height: 25px;
+    line-height: 25px;
+    font-size: 16px;
+    margin: 10px;
+}
+
+.form-style input[type="text"]:focus,
+.form-style input[type="date"]:focus,
+.form-style input[type="datetime"]:focus,
+.form-style input[type="email"]:focus,
+.form-style input[type="number"]:focus,
+.form-style input[type="search"]:focus,
+.form-style input[type="time"]:focus,
+.form-style input[type="url"]:focus,
+.form-style input[type="password"]:focus,
+.form-style textarea:focus,
+.form-style select:focus  {
+    color: #FF0000;
+}
+
+.form-style li > span {
+    background: #F3F3F3;
+    display: block;
+    padding: 3px;
+    margin: 0 -9px -9px -9px;
+    text-align: center;
+    color: #AAAAAA;
+    font-size: 11px;
+}
+.form-style textarea{
+    resize:none;
+}
+
+.form-style input[type="submit"],
+.form-style input[type="button"],
+.form-style button{
+    background: #000000;
+    border: none;
+    padding: 10px 20px 10px 20px;
+    border-bottom: 3px solid #888888;
+    border-radius: 3px;
+    color: #FFFFFF;
+    font-weight: 700;
+}
+
+.form-style button{
+    padding: 10px 10px 10px 10px;
+}
+
+.form-style input[type="submit"]:hover,
+.form-style input[type="button"]:hover {
+    background: #333333;
+    color:#FFFFFF;
+}
+
+.table-style {
+    overflow-x: auto;
+}
+
+.table-style table {
+    width: 100%;
+    border-collapse: collapse;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+    background-color: #FAFAFA;
+}
+
+.table-style tr {
+    border-bottom: 5px ridge;
+}
+
+.table-style tr:last-child {
+    border-bottom: none;
+}
+
+.table-style td, th {
+    border-radius: 15px;
+    padding: 10px 20px 10px 20px;
+    text-align: justify;
+}
+
+.table-style .title {
+    text-align: center;
+    border-style: none none ridge none;
+}
+
+.table-style th {
+    text-align: right;
+    border-style: none dotted none none;
+    border-width: 0 1px 0 0;
+}
+
+tr:first-child:hover {
+    background-color: #fafafa;
+}
+
+tr:hover {
+    background-color: #f5f5f5;
+}
+
+.links-table tr:hover {
+    background-color: #FAFAFA;
+}
+
+.links-table td:hover {
+    background-color: #f5f5f5
+}
+
+.table-style .link {
+    text-align: center;
+}
+
+.pub-table td {
+    font-size: 10px;
+}
+
+.pub-table td {
+    border-style: none dotted none dotted;
+    border-width: 1px;
+}
+
+.pub-style h3 a {
+    font-weight: 600;
+}
+
+.pub-style a {
+    font-weight: 500;
+}

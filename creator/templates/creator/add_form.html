@@ -1,0 +1,41 @@
+{% extends 'portal/base.html' %}
+{% load widget_type %}
+
+{% block head_title %}{{ title }}{% endblock %}
+
+{% block content %}
+    <h2>Add {{ title }} Details</h2>
+    <p>In this form, add the details for the {{ title }}.</p>
+
+    <form class="form-style" method="post">
+        {% csrf_token %}
+        <ul id="form">
+            {% if form.non_field_errors %}
+            <li>
+                {{ form.non_field_errors }}
+            </li>
+            {% endif %}
+            {% for f in form %}
+            <li>
+                {{ f.errors }}<br />
+                <label for="{{ f.id_for_label }}">{{ f.label }}</label>
+                {% if f|fieldtype == 'RadioSelect'%}
+                <br>
+                <ul>
+                {% for c in f %}
+                    <li>{{ c }}</li>
+                    <li style="display: none;" />
+                {% endfor %}
+                </ul>
+                {% else %}
+                    {{ f }}
+                {% endif %}
+                <span>{{ f.help_text|safe }}</span>
+            </li>
+            {% endfor %}
+            <li id="submit">
+                <input type="submit" name="Submit" />
+            </li>
+        </ul>
+    </form>
+{% endblock %}
