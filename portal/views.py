@@ -243,7 +243,7 @@ def institute(request, institute_id):
                        '`publisher`.`id`, `publisher`.`name`, `publisher`.`type` ' +
                        'FROM `publication`, `publisher`, `publication_has_author`, `author` WHERE ' +
                        '`publisher.id`=`publisher`.`id` AND `publication.id`=`publication`.`id` ' +
-                       'AND `author.id`=`author`.`id` AND `approved`=TRUE'
+                       'AND `author.id`=`author`.`id` AND `approved`=TRUE ' +
                        'AND `institute.id`=%s ORDER BY `date` DESC;', [institute_id, ])
         tbl = cursor.fetchall()
         if tbl is not None:
@@ -426,7 +426,7 @@ def dump(request):
                     cursor.execute('SELECT DISTINCT `publication`.`id`, `title`, `description`, `date`, `location`, ' +
                                    '`publisher`.`id`, `publisher`.`name`, `publisher`.`type` ' +
                                    'FROM `publication`, `publisher` WHERE ' +
-                                   '`publisher.id`=`publisher`.`id` AND `approved`=TRUE' +
+                                   '`publisher.id`=`publisher`.`id` AND `approved`=TRUE ' +
                                    'AND `publication`.`id`=%s ORDER BY `date` DESC;', [i, ])
                     tbl = cursor.fetchall()
                     if tbl is not None:
